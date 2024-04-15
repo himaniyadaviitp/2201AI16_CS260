@@ -2,7 +2,7 @@
 -- 1.	The .sql files are run automatically, so please ensure that there are no syntax errors in the file. If we are unable to run your file, you get an automatic reduction to 0 marks.
 -- Comment in MYSQL 
 
----1.
+-- 1.
 DELIMITER //
 CREATE TRIGGER IncreaseSalaryTrigger
 BEFORE INSERT ON employees
@@ -16,7 +16,7 @@ END;
 DELIMITER ;
 
 
----2.
+-- 2.
 DELIMITER //
 CREATE TRIGGER PreventDeleteDepartmentTrigger
 BEFORE DELETE ON departments
@@ -35,7 +35,7 @@ END;
 DELIMITER ;
 
 
----3.
+-- 3.
 DELIMITER //
 CREATE TRIGGER SalaryUpdateAuditTrigger
 AFTER UPDATE ON employees
@@ -48,7 +48,7 @@ END;
 DELIMITER ;
 
 
----4.
+-- 4.
 DELIMITER //
 CREATE TRIGGER AssignDepartmentTrigger
 BEFORE INSERT ON employees
@@ -62,7 +62,7 @@ END;
 DELIMITER ;
 
 
----5.
+-- 5.
 DELIMITER //
 CREATE TRIGGER UpdateManagerSalaryTrigger
 AFTER INSERT ON employees
@@ -76,7 +76,7 @@ END;
 DELIMITER ;
 
 
----6.
+-- 6.
 DELIMITER //
 CREATE TRIGGER PreventUpdateDepartmentTrigger
 BEFORE UPDATE ON employees
@@ -95,7 +95,7 @@ END;
 DELIMITER ;
 
 
----7.
+-- 7.
 DELIMITER //
 CREATE TRIGGER UpdateAverageSalaryTrigger
 AFTER UPDATE ON employees
@@ -113,7 +113,7 @@ END;
 DELIMITER ;
 
 
----8.
+-- 8.
 DELIMITER //
 CREATE TRIGGER DeleteWorksOnTrigger
 AFTER DELETE ON employees
@@ -125,7 +125,7 @@ END;
 DELIMITER ;
 
 
----9.
+-- 9.
 DELIMITER //
 CREATE TRIGGER PreventInsertEmployeeTrigger
 BEFORE INSERT ON employees
@@ -144,7 +144,7 @@ END;
 DELIMITER ;
 
 
----10.
+-- 10.
 DELIMITER //
 CREATE TRIGGER UpdateTotalBudgetTrigger
 AFTER UPDATE ON employees
@@ -162,8 +162,8 @@ END;
 DELIMITER ;
 
 
----11.
----create table email_queue
+-- 11.
+-- create table email_queue
 CREATE TABLE email_queue (
     id INT AUTO_INCREMENT PRIMARY KEY,
     recipient_email VARCHAR(255) NOT NULL,
@@ -172,7 +172,7 @@ CREATE TABLE email_queue (
     sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
----trigger
+-- trigger
 DELIMITER //
 CREATE TRIGGER NewEmployeeNotificationTrigger
 AFTER INSERT ON employees
@@ -192,53 +192,7 @@ END;
 //
 DELIMITER ;
 
----python code to sent emails (read data from email_queue)
--- import smtplib
--- import mysql.connector
--- from email.message import EmailMessage
-
--- # Connect to the database
--- db = mysql.connector.connect(
---     host="your_host",
---     user="your_username",
---     password="your_password",
---     database="your_database"
--- )
--- cursor = db.cursor()
-
--- # Select unsent emails from the email_queue table
--- cursor.execute("SELECT id, recipient_email, subject, message FROM email_queue WHERE sent_at IS NULL")
--- emails = cursor.fetchall()
-
--- # Send emails
--- for email in emails:
---     msg = EmailMessage()
---     msg.set_content(email[3])
---     msg["Subject"] = email[2]
---     msg["From"] = "your_email@example.com"  # Change this to your email address
---     msg["To"] = email[1]
-
---     try:
---         # Send the email
---         with smtplib.SMTP("smtp.yourmailserver.com", 587) as smtp:
---             smtp.starttls()
---             smtp.login("your_email@example.com", "your_password")  # Change this to your email and password
---             smtp.send_message(msg)
-
---         # Mark the email as sent in the database
---         cursor.execute("UPDATE email_queue SET sent_at = CURRENT_TIMESTAMP WHERE id = %s", (email[0],))
---         db.commit()
---     except Exception as e:
---         print(f"Failed to send email: {e}")
-
--- # Close the database connection
--- cursor.close()
--- db.close()
-
-
-
-
----12.
+-- 12.
 DELIMITER //
 CREATE TRIGGER PreventInsertDepartmentTrigger
 BEFORE INSERT ON departments
@@ -253,7 +207,7 @@ END;
 DELIMITER ;
 
 
----13.
+-- 13.
 DELIMITER //
 CREATE TRIGGER UpdateEmployeeDepartmentNameTrigger
 AFTER UPDATE ON departments
@@ -267,7 +221,7 @@ END;
 DELIMITER ;
 
 
----14.
+-- 14.
 CREATE TABLE employee_audit (
     audit_id INT AUTO_INCREMENT PRIMARY KEY,
     operation_type VARCHAR(10) NOT NULL,
@@ -311,7 +265,7 @@ END;
 DELIMITER ;
 
 
----15.
+-- 15.
 DELIMITER //
 CREATE TRIGGER GenerateEmployeeIdTrigger
 BEFORE INSERT ON employees
